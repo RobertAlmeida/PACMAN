@@ -393,8 +393,34 @@ function canMove(x, y, direction) {
     checkY = Math.floor(y);
   }
 
-  const newX = checkX + direction.x;
+  const newX =
+    direction === LEFT
+      ? checkX + direction.x
+      : Math.floor(checkX + direction.x);
   const newY = Math.floor(checkY + direction.y);
+
+  // Se estiver no modo fantasma, pode atravessar paredes
+  if (ghostPowerActive) {
+    return true;
+  }
+
+  // Verificar se é um túnel
+  if (newX < 0 || newX >= cols) return true;
+
+  // Verificar se há parede
+  return (
+    newX >= 0 &&
+    newY >= 0 &&
+    newX < cols &&
+    newY < rows &&
+    maze[newY][newX] !== 0
+  );
+}
+
+// Verificar se pode mover para determinada direção
+function canMoveGhost(x, y, direction) {
+  const newX = Math.floor(x + direction.x);
+  const newY = Math.floor(y + direction.y);
 
   // Se estiver no modo fantasma, pode atravessar paredes
   if (ghostPowerActive) {
@@ -453,7 +479,7 @@ function updateGhosts() {
           continue;
         }
 
-        if (canMove(ghost.x, ghost.y, dir)) {
+        if (canMoveGhost(ghost.x, ghost.y, dir)) {
           possibleDirections.push(dir);
         }
       }
@@ -461,7 +487,7 @@ function updateGhosts() {
       // Se não houver direções possíveis, tentar a direção oposta
       if (
         possibleDirections.length === 0 &&
-        canMove(ghost.x, ghost.y, oppositeDirection)
+        canMoveGhost(ghost.x, ghost.y, oppositeDirection)
       ) {
         possibleDirections.push(oppositeDirection);
       }
