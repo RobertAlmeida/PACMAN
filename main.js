@@ -260,7 +260,7 @@ function gameLoop(timestamp) {
   updateGhosts();
 
   // Verificar colisões
-  //   checkCollisions();
+  checkCollisions();
 
   // Atualizar timers para poderes
   updatePowerTimers();
