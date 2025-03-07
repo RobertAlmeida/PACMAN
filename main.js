@@ -377,10 +377,24 @@ function activatePowerPellet() {
   }, powerPelletTimer - 3000);
 }
 
-// Verificar se pode mover para determinada direção
+// Modificação na função canMove para corrigir o problema de movimento para a esquerda
 function canMove(x, y, direction) {
-  const newX = Math.floor(x + direction.x);
-  const newY = Math.floor(y + direction.y);
+  // Para movimento para a esquerda, precisamos considerar a posição atual do Pacman
+  let checkX = x;
+  let checkY = y;
+
+  // Se estiver movendo para a esquerda e estiver perto da borda de uma célula
+  if (direction === LEFT && x - Math.floor(x) < 0.1) {
+    checkX = Math.floor(x);
+  }
+
+  // Se estiver movendo para a esquerda e estiver perto da borda de uma célula
+  if (direction === UP && y - Math.floor(y) < 0.1) {
+    checkY = Math.floor(y);
+  }
+
+  const newX = checkX + direction.x;
+  const newY = Math.floor(checkY + direction.y);
 
   // Se estiver no modo fantasma, pode atravessar paredes
   if (ghostPowerActive) {
