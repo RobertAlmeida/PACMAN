@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pac-Man Moderno</title>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <h1>Pac-Man Moderno</h1>
+
+    <div class="info-container">
+      <div class="score-container">
+        <div>Pontuação</div>
+        <div id="score">0</div>
+      </div>
+
+      <div class="level-container">
+        <div>Nível</div>
+        <div id="level">1</div>
+      </div>
+
+      <div class="lives-container">
+        <div>Vidas</div>
+        <div id="lives">3</div>
+      </div>
+
+      <div class="power-container">
+        <div>Poder</div>
+        <div class="power-meter">
+          <div class="power-fill" id="power-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-container">
+      <canvas id="game-board"></canvas>
+
+      <div class="new-feature">Novos Poderes!</div>
+
+      <div class="game-over" id="game-over">
+        <div class="message">Game Over</div>
+        <button class="restart-btn" id="restart-btn">Jogar Novamente</button>
+      </div>
+
+      <div class="level-complete" id="level-complete">
+        <div class="message">Nível Completo!</div>
+        <button class="restart-btn" id="next-level-btn">Próximo Nível</button>
+      </div>
+    </div>
+
+    <div class="powerup-container">
+      <div class="powerup freeze tooltip" id="freeze-powerup">
+        ❄️
+        <span class="tooltiptext">Congela fantasmas (Espaço)</span>
+      </div>
+      <div class="powerup speed tooltip" id="speed-powerup">
+        🔥
+        <span class="tooltiptext">Velocidade (Shift)</span>
+      </div>
+      <div class="powerup ghost tooltip" id="ghost-powerup">
+        👻
+        <span class="tooltiptext">Atravessa paredes (Ctrl)</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="control-btn" id="up-btn">↑</button>
+      <button class="control-btn" id="left-btn">←</button>
+      <button class="control-btn" id="down-btn">↓</button>
+      <button class="control-btn" id="right-btn">→</button>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
