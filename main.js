@@ -58,7 +58,7 @@ let pacman = {
   y: 15,
   size: cellSize - 4,
   speed: 5,
-  baseSpeed: 5,
+  baseSpeed: 1,
   direction: RIGHT,
   nextDirection: RIGHT,
   mouthOpen: 0,
