@@ -289,8 +289,13 @@ function updatePacman() {
 
   // Mover Pacman
   if (canMove(pacman.x, pacman.y, pacman.direction)) {
+    console.log("MOVER PAC MAN", pacman.direction);
     pacman.x += (pacman.direction.x * currentSpeed) / cellSize;
     pacman.y += (pacman.direction.y * currentSpeed) / cellSize;
+
+    if (pacman.direction === UP) {
+      pacman.y = parseInt(pacman.y);
+    }
 
     // Normalizar posição para evitar problemas de colisão
     if (
@@ -389,15 +394,14 @@ function canMove(x, y, direction) {
   }
 
   // Se estiver movendo para a esquerda e estiver perto da borda de uma célula
-  if (direction === UP && y - Math.floor(y) < 0.1) {
-    checkY = Math.floor(y);
-  }
+  checkY = Math.floor(y);
 
   const newX =
     direction === LEFT
       ? checkX + direction.x
       : Math.floor(checkX + direction.x);
-  const newY = Math.floor(checkY + direction.y);
+
+  const newY = checkY + direction.y;
 
   // Se estiver no modo fantasma, pode atravessar paredes
   if (ghostPowerActive) {
