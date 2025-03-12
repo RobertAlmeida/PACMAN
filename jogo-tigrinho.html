@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tigrinho Plus - Diversão Garantida</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="game-container">
+      <div class="game-header">
+        <div class="logo">
+          <h1 class="game-title">🐯 TIGRINHO PLUS</h1>
+        </div>
+        <div class="user-controls">
+          <button class="user-btn" id="add-credits-btn">+ CRÉDITOS</button>
+        </div>
+      </div>
+
+      <div class="score-display">
+        <div class="score-item">
+          <p>SALDO</p>
+          <h2 id="points">1000</h2>
+        </div>
+        <div class="score-item">
+          <p>APOSTA</p>
+          <h2 id="bet-amount">50</h2>
+        </div>
+      </div>
+
+      <div class="slot-machine" id="slot-machine">
+        <div class="slot" id="slot1">❓</div>
+        <div class="slot" id="slot2">❓</div>
+        <div class="slot" id="slot3">❓</div>
+      </div>
+
+      <div class="result-message" id="result-message"></div>
+
+      <div class="controls">
+        <div class="betting-controls">
+          <button class="betting-btn" id="decrease-bet">- APOSTA</button>
+          <button class="betting-btn" id="increase-bet">+ APOSTA</button>
+        </div>
+        <button id="spin-button">GIRAR AGORA!</button>
+      </div>
+
+      <div class="symbols-info">
+        <h3>TABELA DE PRÊMIOS</h3>
+        <div class="symbols-grid">
+          <ul>
+            <li>
+              <span class="symbol">🐯</span> 3x Tigre
+              <span class="multiplier">5x</span>
+            </li>
+            <li>
+              <span class="symbol">🦁</span> 3x Leão
+              <span class="multiplier">4x</span>
+            </li>
+            <li>
+              <span class="symbol">🐘</span> 3x Elefante
+              <span class="multiplier">3x</span>
+            </li>
+            <li>
+              <span class="symbol">🦒</span> 3x Girafa
+              <span class="multiplier">2x</span>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <span class="symbol">🦓</span> 3x Zebra
+              <span class="multiplier">1.5x</span>
+            </li>
+            <li>
+              <span class="symbol">🐯</span> 2x Tigre
+              <span class="multiplier">1.5x</span>
+            </li>
+            <li>
+              <span class="symbol">🌟</span> 3 iguais
+              <span class="multiplier">1x</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para adicionar créditos -->
+    <div class="modal-overlay" id="credits-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Adicionar Créditos</h2>
+          <button class="close-btn" id="close-modal">&times;</button>
+        </div>
+        <div class="modal-content">
+          <div class="credit-options">
+            <div class="credit-option" data-amount="500">
+              <div class="credit-amount">500</div>
+              <div class="credit-bonus">Sem Bônus</div>
+            </div>
+            <div class="credit-option" data-amount="1000">
+              <div class="credit-amount">1000</div>
+              <div class="credit-bonus">+50 Bônus</div>
+            </div>
+            <div class="credit-option" data-amount="2000">
+              <div class="credit-amount">2000</div>
+              <div class="credit-bonus">+150 Bônus</div>
+            </div>
+            <div class="credit-option selected" data-amount="5000">
+              <div class="credit-amount">5000</div>
+              <div class="credit-bonus">+500 Bônus</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="add-credit-btn" id="confirm-credits">
+            ADICIONAR CRÉDITOS
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="main.js"></script>
+</html>
