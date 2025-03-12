@@ -25,7 +25,7 @@
         </div>
         <div class="score-item">
           <p>APOSTA</p>
-          <h2 id="bet-amount">50</h2>
+          <h2 id="bet-amount">0</h2>
         </div>
       </div>
 
@@ -93,21 +93,33 @@
         </div>
         <div class="modal-content">
           <div class="credit-options">
-            <div class="credit-option" data-amount="500">
-              <div class="credit-amount">500</div>
+            <div class="credit-option" data-amount="5">
+              <div class="credit-amount">5</div>
               <div class="credit-bonus">Sem Bônus</div>
             </div>
-            <div class="credit-option" data-amount="1000">
-              <div class="credit-amount">1000</div>
-              <div class="credit-bonus">+50 Bônus</div>
+            <div class="credit-option" data-amount="10">
+              <div class="credit-amount">10</div>
+              <div class="credit-bonus">+5 Bônus</div>
             </div>
-            <div class="credit-option" data-amount="2000">
-              <div class="credit-amount">2000</div>
-              <div class="credit-bonus">+150 Bônus</div>
+            <div class="credit-option" data-amount="100">
+              <div class="credit-amount">100</div>
+              <div class="credit-bonus">+15 Bônus</div>
             </div>
-            <div class="credit-option selected" data-amount="5000">
-              <div class="credit-amount">5000</div>
-              <div class="credit-bonus">+500 Bônus</div>
+            <div class="credit-option" data-amount="150">
+              <div class="credit-amount">150</div>
+              <div class="credit-bonus">+20 Bônus</div>
+            </div>
+            <div class="credit-option" data-amount="-">
+              <div class="credit-amount">Valor</div>
+              <div class="credit-bonus">
+                <input
+                  class=""
+                  type="number"
+                  name="cred-other"
+                  id="cred-other"
+                  onchange="otherValue()"
+                />
+              </div>
             </div>
           </div>
         </div>

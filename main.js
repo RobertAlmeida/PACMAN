@@ -1,6 +1,18 @@
-const symbols = ["🐯", "🦁", "🐘", "🦒", "🦓", "🦊", "🐺", "🐆", "🦛", "🦏"];
-let points = 1000;
-let betAmount = 50;
+const symbols = [
+  "🐯",
+  "🦁",
+  "🐘",
+  "🦒",
+  "🦓",
+  "🦊",
+  "🐺",
+  "🐆",
+  "🦛",
+  "🦏",
+  "🌟",
+];
+let points = 0;
+let betAmount = 0;
 let isSpinning = false;
 let selectedCreditAmount = 5000;
 
@@ -34,7 +46,7 @@ function updateDisplays() {
   increaseBetButton.disabled = isSpinning;
 
   // Pulse add-credits button if low on funds
-  if (points < 100) {
+  if (points <= 0) {
     addCreditsBtn.classList.add("pulse");
   } else {
     addCreditsBtn.classList.remove("pulse");
@@ -50,20 +62,26 @@ function getRandomSymbol() {
 function spinAnimation(slot, duration, finalSymbol) {
   return new Promise((resolve) => {
     const startTime = Date.now();
-    const animateFrame = () => {
-      const elapsedTime = Date.now() - startTime;
-      const progress = Math.min(elapsedTime / duration, 1);
+    let elapsedTime = 0;
+    let speed = 50; // Velocidade inicial do giro
 
-      if (progress < 1) {
-        slot.textContent = getRandomSymbol();
-        requestAnimationFrame(animateFrame);
-      } else {
-        slot.textContent = finalSymbol;
-        resolve();
-      }
-    };
+    const spinInterval = setInterval(() => {
+      slot.textContent = getRandomSymbol();
+      elapsedTime = Date.now() - startTime;
 
-    animateFrame();
+      // Diminuir a velocidade conforme o tempo passa (efeito de desaceleração)
+      if (elapsedTime > duration * 0.7) speed = 100;
+      if (elapsedTime > duration * 0.85) speed = 150;
+      if (elapsedTime > duration * 0.95) speed = 250;
+    }, speed);
+
+    setTimeout(() => {
+      clearInterval(spinInterval);
+      slot.textContent = finalSymbol;
+      slot.classList.add("slot-stop-effect"); // Efeito de parada suave
+      setTimeout(() => slot.classList.remove("slot-stop-effect"), 300);
+      resolve();
+    }, duration);
   });
 }
 
@@ -100,6 +118,7 @@ function calculateWinnings(symbols) {
 // Spin function
 async function spin() {
   if (isSpinning || points < betAmount) return;
+  if (betAmount == 0) return;
 
   isSpinning = true;
   points -= betAmount;
@@ -167,17 +186,24 @@ function selectCreditOption(option) {
   // Add selected class to clicked option
   option.classList.add("selected");
 
-  // Update selected amount
-  selectedCreditAmount = parseInt(option.dataset.amount);
+  if (option.dataset.amount !== "-") {
+    // Update selected amount
+    selectedCreditAmount = parseInt(option.dataset.amount);
+  }
+}
+
+function otherValue() {
+  const otherValue = document.getElementById("cred-other");
+  selectedCreditAmount = parseInt(otherValue.value);
 }
 
 function addCredits() {
   // Add selected amount with bonus
   let bonus = 0;
 
-  if (selectedCreditAmount === 1000) bonus = 50;
-  else if (selectedCreditAmount === 2000) bonus = 150;
-  else if (selectedCreditAmount === 5000) bonus = 500;
+  if (selectedCreditAmount === 10) bonus = 5;
+  else if (selectedCreditAmount === 100) bonus = 15;
+  else if (selectedCreditAmount === 150) bonus = 20;
 
   points += selectedCreditAmount + bonus;
   updateDisplays();
@@ -197,13 +223,22 @@ spinButton.addEventListener("click", spin);
 
 decreaseBetButton.addEventListener("click", () => {
   if (isSpinning) return;
-  betAmount = Math.max(10, betAmount - 10);
+
+  if (betAmount == 0) {
+    betAmount = 0;
+    return;
+  }
+  betAmount = betAmount - 1;
+
   updateDisplays();
 });
 
 increaseBetButton.addEventListener("click", () => {
   if (isSpinning) return;
-  betAmount = Math.min(500, betAmount + 10);
+  betAmount = betAmount + 1;
+  if (betAmount > points) {
+    betAmount = points;
+  }
   updateDisplays();
 });
 

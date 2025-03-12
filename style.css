@@ -68,9 +68,7 @@
       }
 
       .user-btn {
-          background-color: rgba(252, 163, 17, 0.2);
-          color: #fca311;
-          border: 1px solid #fca311;
+
           padding: 8px 12px;
           border-radius: 5px;
           cursor: pointer;
@@ -564,3 +562,36 @@
           height: 130px;
           font-size: 54px;
       }
+
+
+          /* Custom input styling for credit option */
+          .credit-option input[type="number"] {
+              width: 100%;
+              background: rgba(15, 52, 96, 0.8);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              border-radius: 5px;
+              padding: 8px 10px;
+              color: white;
+              font-size: 16px;
+              font-weight: bold;
+              text-align: center;
+              transition: all 0.2s ease;
+              margin-top: 5px;
+              outline: none;
+          }
+    
+          .credit-option input[type="number"]:focus {
+              border-color: #fca311;
+              box-shadow: 0 0 8px rgba(252, 163, 17, 0.5);
+          }
+    
+          /* Remove spinner arrows from number input */
+          .credit-option input[type="number"]::-webkit-inner-spin-button,
+          .credit-option input[type="number"]::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+          }
+    
+          .credit-option input[type="number"] {
+              -moz-appearance: textfield;
+          }
